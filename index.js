@@ -70,7 +70,7 @@ async function run() {
             res.send(employees);
         })
 
-        app.get('/employees/:id', verifyJWT, async (req, res) => {
+        app.get('/employees/:id', async (req, res) => {
             const id = req.params.id;
             const query = { _id: ObjectId(id) };
             const employee = await employeesCollection.findOne(query);
@@ -120,9 +120,6 @@ async function run() {
         })
 
         app.post('/orders', verifyJWT, async (req, res) => {
-            if (req.decoded.currentUserEmail !== req.query.email) {
-                return res.status(401).send({ message: 'unauthorized access' });
-            }
             const order = req.body;
             const result = await ordersCollection.insertOne(order);
             res.send(result);
