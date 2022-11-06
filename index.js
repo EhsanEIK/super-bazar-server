@@ -126,9 +126,6 @@ async function run() {
         })
 
         app.delete('/orders/:id', verifyJWT, async (req, res) => {
-            if (req.decoded.currentUserEmail !== req.query.email) {
-                return res.status(401).send({ message: 'unauthorized access' });
-            }
             const id = req.params.id;
             const query = { _id: ObjectId(id) };
             const result = await ordersCollection.deleteOne(query);
