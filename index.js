@@ -30,9 +30,9 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 
 async function run() {
     try {
-        const productsCollection = client.db('myShopPracticeDB').collection('products');
-        const employeesCollection = client.db('myShopPracticeDB').collection('employees');
-        const ordersCollection = client.db('myShopPracticeDB').collection('orders');
+        const productsCollection = client.db('superBazarDB').collection('products');
+        const employeesCollection = client.db('superBazarDB').collection('employees');
+        const ordersCollection = client.db('superBazarDB').collection('orders');
 
         // JWT
         app.post('/jwt', (req, res) => {
@@ -145,7 +145,7 @@ run().catch(error => console.error(error));
 
 
 app.get('/', (req, res) => {
-    res.send('my shop server is running');
+    res.send('super bazar server is running');
 })
 
 app.listen(port, () => {
